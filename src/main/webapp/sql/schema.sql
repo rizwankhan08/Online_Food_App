@@ -3,9 +3,7 @@
 -- Database: foodapp
 -- ============================================================
 
-DROP DATABASE IF EXISTS foodapp;
-CREATE DATABASE foodapp CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE foodapp;
+
 
 -- ============================================================
 -- 1. USERS TABLE

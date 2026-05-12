@@ -19,9 +19,19 @@ public class DbConnection {
     private static final Logger LOGGER = Logger.getLogger(DbConnection.class.getName());
     private static final HikariDataSource dataSource;
 
-    // Database configuration - Uses Environment Variables if available, otherwise defaults to Local
-    private static final String URL = System.getenv("DB_URL") != null ? 
-            System.getenv("DB_URL") : "jdbc:mysql://localhost:3306/foodapp?useSSL=false&serverTimezone=Asia/Kolkata&allowPublicKeyRetrieval=true";
+    private static String getJdbcUrl() {
+        String envUrl = System.getenv("DB_URL");
+        if (envUrl != null) {
+            // Convert Railway/Heroku style mysql:// to jdbc:mysql://
+            if (envUrl.startsWith("mysql://")) {
+                return "jdbc:" + envUrl;
+            }
+            return envUrl;
+        }
+        return "jdbc:mysql://localhost:3306/foodapp?useSSL=false&serverTimezone=Asia/Kolkata&allowPublicKeyRetrieval=true";
+    }
+
+    private static final String URL = getJdbcUrl();
     
     private static final String USERNAME = System.getenv("DB_USER") != null ? 
             System.getenv("DB_USER") : "root";
