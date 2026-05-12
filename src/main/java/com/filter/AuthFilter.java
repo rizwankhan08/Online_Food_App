@@ -59,6 +59,6 @@ public class AuthFilter implements Filter {
                path.endsWith(".css") || path.endsWith(".js") ||
                path.endsWith(".png") || path.endsWith(".jpg") || path.endsWith(".jpeg") ||
                path.endsWith(".gif") || path.endsWith(".ico") || path.endsWith(".svg") ||
-               path.startsWith("/api/") || path.equals("/test-db");
+               path.startsWith("/api/");
     }
 }
