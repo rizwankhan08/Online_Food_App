@@ -1,0 +1,22 @@
+/* Admin Panel CSS */
+.admin-layout { display:flex; min-height:100vh; }
+.admin-sidebar {
+    width:240px; background:var(--bg-card); border-right:1px solid var(--border);
+    padding:20px 0; flex-shrink:0; position:sticky; top:0; height:100vh; overflow-y:auto;
+}
+.sidebar-brand {
+    padding:10px 20px 20px; font-size:1.1rem; font-weight:800;
+    background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.sidebar-nav { display:flex; flex-direction:column; }
+.sidebar-link {
+    padding:12px 20px; color:var(--text-secondary); font-size:0.9rem;
+    font-weight:500; transition:var(--transition); text-decoration:none; display:block;
+}
+.sidebar-link:hover { background:var(--bg-surface); color:var(--text-primary); }
+.sidebar-link.active { background:rgba(255,87,34,0.1); color:var(--primary); border-left:3px solid var(--primary); }
+.admin-main { flex:1; padding:24px; overflow-x:auto; }
+.admin-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; }
+.admin-header h1 { font-size:1.6rem; font-weight:800; }
+
+@media(max-width:768px) { .admin-sidebar{display:none;} }
