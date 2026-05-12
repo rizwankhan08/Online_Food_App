@@ -23,8 +23,16 @@
                                         style="background:var(--bg-card);padding:30px;border-bottom:1px solid var(--border)">
                                         <div class="container"
                                             style="display:flex;align-items:center;gap:20px;padding:0">
-                                            <img src="<%= ctx %>/<%= restaurant.getImageUrl() %>" alt="<%= rName %>"
-                                                style="width:120px;height:120px;border-radius:var(--radius);object-fit:cover">
+                                            <% 
+                                                String resImgUrl = restaurant.getImageUrl();
+                                                if (resImgUrl != null && (resImgUrl.startsWith("http://") || resImgUrl.startsWith("https://"))) {
+                                            %>
+                                                <img src="<%= resImgUrl %>" alt="<%= rName %>"
+                                                    style="width:120px;height:120px;border-radius:var(--radius);object-fit:cover">
+                                            <% } else { %>
+                                                <img src="<%= ctx %>/<%= resImgUrl %>" alt="<%= rName %>"
+                                                    style="width:120px;height:120px;border-radius:var(--radius);object-fit:cover">
+                                            <% } %>
                                             <div>
                                                 <h1 style="font-size:1.8rem;font-weight:800">
                                                     <%= rName %>
@@ -64,9 +72,14 @@
                                                     <% for (Menu item : menuList) { %>
                                                         <div class="card animate-in">
                                                             <div class="card-img-wrapper">
-                                                                <img class="card-img"
-                                                                    src="<%= ctx %>/<%= item.getImageUrl() %>"
-                                                                    alt="<%= item.getName() %>">
+                                                                <% 
+                                                                    String itemImgUrl = item.getImageUrl();
+                                                                    if (itemImgUrl != null && (itemImgUrl.startsWith("http://") || itemImgUrl.startsWith("https://"))) {
+                                                                %>
+                                                                    <img class="card-img" src="<%= itemImgUrl %>" alt="<%= item.getName() %>">
+                                                                <% } else { %>
+                                                                    <img class="card-img" src="<%= ctx %>/<%= itemImgUrl %>" alt="<%= item.getName() %>">
+                                                                <% } %>
                                                                 <span class="badge <%= item.isVeg() ? " badge-veg"
                                                                     : "badge-nonveg" %>"
                                                                     style="position:absolute;top:10px;left:10px">

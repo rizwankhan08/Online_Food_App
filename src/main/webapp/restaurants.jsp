@@ -46,7 +46,14 @@
         <% for (Restaurant r : restaurants) { %>
         <div class="card animate-in" onclick="location.href='menu?restaurantId=<%= r.getId() %>'" style="cursor:pointer">
             <div class="card-img-wrapper">
-                <img class="card-img" src="<%= ctx %>/<%= r.getImageUrl() %>" alt="<%= r.getName() %>">
+                <% 
+                    String imgUrl = r.getImageUrl();
+                    if (imgUrl != null && (imgUrl.startsWith("http://") || imgUrl.startsWith("https://"))) {
+                %>
+                    <img class="card-img" src="<%= imgUrl %>" alt="<%= r.getName() %>">
+                <% } else { %>
+                    <img class="card-img" src="<%= ctx %>/<%= imgUrl %>" alt="<%= r.getName() %>">
+                <% } %>
                 <% if (r.getCuisineType() != null) { %>
                     <span class="badge badge-primary" style="position:absolute;top:10px;left:10px"><%= r.getCuisineType() %></span>
                 <% } %>
